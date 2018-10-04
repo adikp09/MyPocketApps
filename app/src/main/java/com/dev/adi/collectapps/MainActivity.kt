@@ -14,6 +14,9 @@ class MainActivity : AppCompatActivity() {
 
         floatingActionButton.setOnClickListener {
             val listItems = arrayOf(
+                    "Meetup.com",
+                    "Multi Calendar",
+                    "Multi Calculator",
                     "Minesweeper",
                     "Antre Bank",
                     "Weather App",
@@ -39,6 +42,12 @@ class MainActivity : AppCompatActivity() {
             mBuilder.setItems(listItems
             ) { _, which ->
                 when {
+                    listItems[which] == "Meetup.com" ->
+                        startActivity(Intent(this, MeetupActivity::class.java))
+                    listItems[which] == "Multi Calendar" ->
+                        startActivity(Intent(this, MultiCalendarActivity::class.java))
+                    listItems[which] == "MultiCalculator" ->
+                        startActivity(Intent(this, MultiCalculator::class.java))
                     listItems[which] == "Minesweeper" ->
                         startActivity(Intent(this, MinesweeperActivity::class.java))
                     listItems[which] == "Antre Bank" ->
