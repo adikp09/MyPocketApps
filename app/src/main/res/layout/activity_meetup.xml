@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MeetupActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp">
+
+        <LinearLayout
+            android:id="@+id/view_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/start_event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Create Event" />
+
+            <Button
+                android:id="@+id/see_event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List Event" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_create_event"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Meetup.com"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Subject"
+                android:text="nobar"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+            <EditText
+                android:id="@+id/et_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Location"
+                android:text="yogyakarta"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/et_subject"
+                app:layout_constraintStart_toStartOf="@+id/et_subject"
+                app:layout_constraintTop_toBottomOf="@+id/et_subject" />
+
+            <EditText
+                android:id="@+id/et_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="From (dd-MMMM-YYYY HH:mm)"
+                android:inputType="textPersonName"
+                android:text="04 May 2018 15:00"
+                app:layout_constraintEnd_toEndOf="@+id/et_location"
+                app:layout_constraintStart_toStartOf="@+id/et_location"
+                app:layout_constraintTop_toBottomOf="@+id/et_location" />
+
+            <EditText
+                android:id="@+id/et_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="To (dd-MMMM-YYYY HH:mm)"
+                android:inputType="textPersonName"
+                android:text="05 May 2018 07:00"
+                app:layout_constraintEnd_toEndOf="@+id/et_form"
+                app:layout_constraintStart_toStartOf="@+id/et_form"
+                app:layout_constraintTop_toBottomOf="@+id/et_form" />
+
+            <EditText
+                android:id="@+id/et_timezone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="Timezone"
+                android:text="Pacific/Auckland"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/et_to"
+                app:layout_constraintStart_toStartOf="@+id/et_to"
+                app:layout_constraintTop_toBottomOf="@+id/et_to" />
+
+            <Button
+                android:id="@+id/bt_create_event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Create Event"
+                app:layout_constraintEnd_toEndOf="@+id/et_timezone"
+                app:layout_constraintStart_toStartOf="@+id/et_timezone"
+                app:layout_constraintTop_toBottomOf="@+id/et_timezone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_list_event"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/et_timezone_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Input Timezone"
+                android:inputType="textPersonName"
+                android:text="Asia/Jakarta" />
+
+            <Button
+                android:id="@+id/bt_see_event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View Event" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:visibility="gone"
+            android:id="@+id/list_event"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+</ScrollView>

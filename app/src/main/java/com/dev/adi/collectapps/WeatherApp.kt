@@ -170,6 +170,21 @@ class WeatherApp : AppCompatActivity() {
         }
     }
 
+    fun toJSON(collection: Collection<Int>): String {
+        val sb = StringBuilder()
+        sb.append("[")
+        val iterator = collection.iterator()
+        while (iterator.hasNext()) {
+            val element = iterator.next()
+            sb.append(element)
+            if (iterator.hasNext()) {
+                sb.append(", ")
+            }
+        }
+        sb.append("]")
+        return sb.toString()
+    }
+
     fun Date.toSimpleDateString() = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(this)
 
     fun Date.toSimpleTimeWithoutSecond() = SimpleDateFormat("HH:mm", Locale.getDefault()).format(this)

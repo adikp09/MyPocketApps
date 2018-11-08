@@ -3,6 +3,10 @@
     package="com.dev.adi.collectapps">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".bukaMall.BukaMallActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,7 +67,23 @@
         <activity android:name=".WeatherApp" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".AntreActivity" />
-        <activity android:name=".MinesweeperActivity"></activity>
+        <activity android:name=".MinesweeperActivity" />
+        <activity android:name=".MultiCalculator" />
+        <activity android:name=".MultiCalendarActivity" />
+        <activity android:name=".MeetupActivity" />
+        <activity android:name=".FsaActivity" />
+        <activity android:name=".PlatNomorActivity" />
+        <activity android:name=".ListProductActivity" />
+        <activity android:name=".DetailProductActivity" />
+        <activity android:name=".bukaMall.DetailListProductAct" />
+        <activity android:name=".bukaMall.DetailProductAct" />
+        <activity android:name=".ASCIIActivity" />
+        <!-- <activity android:name=".HistogramActivity"></activity> -->
+        <!-- <activity android:name=".GraphActivity"></activity> -->
+        <!-- <activity android:name=".traversal.TraversalActivity" /> -->
+        <!-- <activity android:name=".RubikActivity"></activity> -->
+        <!-- <activity android:name=".sorting.SortingActivity"></activity> -->
+        <!--<activity android:name=".categories.CategoriesActivity"></activity>-->
     </application>
 
 </manifest>

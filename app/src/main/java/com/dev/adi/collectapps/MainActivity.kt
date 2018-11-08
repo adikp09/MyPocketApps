@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import com.dev.adi.collectapps.bukaMall.BukaMallActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +15,12 @@ class MainActivity : AppCompatActivity() {
 
         floatingActionButton.setOnClickListener {
             val listItems = arrayOf(
+                    "Histogram",
+                    "ASCII",
+                    "BukaMall",
+                    "List Product",
+                    "Plat Nomor",
+                    "FSA",
                     "Meetup.com",
                     "Multi Calendar",
                     "Multi Calculator",
@@ -42,6 +49,18 @@ class MainActivity : AppCompatActivity() {
             mBuilder.setItems(listItems
             ) { _, which ->
                 when {
+                    listItems[which] == "Histogram" ->
+                        startActivity(Intent(this, HistogramActivity::class.java))
+                    listItems[which] == "ASCII" ->
+                        startActivity(Intent(this, ASCIIActivity::class.java))
+                    listItems[which] == "BukaMall" ->
+                        startActivity(Intent(this, BukaMallActivity::class.java))
+                    listItems[which] == "List Product" ->
+                        startActivity(Intent(this, ListProductActivity::class.java))
+                    listItems[which] == "Plat Nomor" ->
+                        startActivity(Intent(this, PlatNomorActivity::class.java))
+                    listItems[which] == "FSA" ->
+                        startActivity(Intent(this, FsaActivity::class.java))
                     listItems[which] == "Meetup.com" ->
                         startActivity(Intent(this, MeetupActivity::class.java))
                     listItems[which] == "Multi Calendar" ->

@@ -7,12 +7,13 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.util.Log.e
 import android.view.Gravity
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_battleship.*
 
 class Battleship : AppCompatActivity() {
@@ -56,7 +57,7 @@ class Battleship : AppCompatActivity() {
         while (x < arrAngka.size) {
 
             val lineChild = LinearLayout(this)
-            val params = LinearLayout.LayoutParams(90, 90)
+            val params = LinearLayout.LayoutParams(80, 80)
             params.setMargins(2, 2, 2, 2)
             lineChild.layoutParams = params
             lineChild.orientation = LinearLayout.VERTICAL
@@ -93,7 +94,7 @@ class Battleship : AppCompatActivity() {
             val arrTextShip = arrayListOf<TextView>()
 
             val lineInit = LinearLayout(this)
-            val params = LinearLayout.LayoutParams(90, 90)
+            val params = LinearLayout.LayoutParams(80, 80)
             params.setMargins(2, 2, 2, 2)
             lineInit.layoutParams = params
             lineInit.orientation = LinearLayout.VERTICAL
@@ -121,7 +122,7 @@ class Battleship : AppCompatActivity() {
             while (x < 10) {
 
                 val lineChild = LinearLayout(this)
-                val params = LinearLayout.LayoutParams(90, 90)
+                val params = LinearLayout.LayoutParams(80, 80)
                 params.setMargins(2, 2, 2, 2)
                 lineChild.layoutParams = params
                 lineChild.orientation = LinearLayout.VERTICAL
@@ -168,26 +169,27 @@ class Battleship : AppCompatActivity() {
             }
         }
         button10.setOnClickListener {
-            when (playerTurn) {
-                1 -> {
-                    resetArr()
-                    reset()
-                    playerTurn = 2
-                    orientation = 0
-                    type = 5
-                    textView14.text = "P2"
-                }
-                2 -> {
-                    reset()
-                    resetArr()
-                    addingEventBom()
-                    button6.visibility = View.GONE
-                    button10.visibility = View.GONE
-                    playerTurn = 1
-                    textView13.text = "BATTLE BEGIN"
-                    textView14.text = "Player $playerTurn is playing"
-                }
-            }
+//            when (playerTurn) {
+//                1 -> {
+//                    resetArr()
+//                    reset()
+//                    playerTurn = 2
+//                    orientation = 0
+//                    type = 5
+//                    textView14.text = "P2"
+//                }
+//                2 -> {
+//                    reset()
+//                    resetArr()
+//                    addingEventBom()
+//                    button6.visibility = View.GONE
+//                    button10.visibility = View.GONE
+//                    playerTurn = 1
+//                    textView13.text = "BATTLE BEGIN"
+//                    textView14.text = "Player $playerTurn is playing"
+//                }
+//            }
+            Log.e("mem", Gson().toJson(getColumn()))
         }
 
         button11.setOnClickListener {
@@ -208,6 +210,48 @@ class Battleship : AppCompatActivity() {
         textView13.setOnClickListener {
             setCheat()
         }
+    }
+
+    private fun getColumn () : MutableList<Int> {
+        var hint = arrayListOf<Int>()
+
+        var i = 0
+        while (i < 10) {
+            if (playerTurn == 1) {
+                hint.add(getObsByColumn(tempInitShipP2, i))
+            } else {
+                hint.add(getObsByColumn(tempInitShipP1, i))
+            }
+            i++
+        }
+        return hint
+    }
+
+    private fun getObsByColumn (listShip : MutableList<ItemShip>, x: Int) : Int {
+        var count = 0
+        var i: Int
+        listShip.forEachIndexed { _, itemShip ->
+            if (itemShip.orientation == 1) {
+                i = itemShip.x?:0
+                while (i < (itemShip.x?:0) + itemShip.quota) {
+                    if (i == x) {
+                        count ++
+                    }
+                    i++
+                }
+            } else {
+                i = itemShip.y?:0
+                while (i < (itemShip.x?:0) + itemShip.quota) {
+                    count ++
+                }
+                i++
+            }
+        }
+        return count
+    }
+
+    private fun getObsByRow () {
+        Log.e("memem2", Gson().toJson(tempInitShipP1))
     }
 
     private fun choosePlayer (stock: ArrayList<ItemShip>, turn : Int) {

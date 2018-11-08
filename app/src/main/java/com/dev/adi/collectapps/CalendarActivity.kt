@@ -16,23 +16,13 @@ import java.util.*
 
 class CalendarActivity : AppCompatActivity() {
 
-    private var arrXY = arrayOfNulls<MutableList<LinearLayout>>(6)
-    private var arrY = arrayOfNulls<MutableList<TextView>>(6)
-    private var arrX = arrayOfNulls<MutableList<TextView>>(6)
     private var arrDay = arrayListOf<Date>()
     private val arr2D = arrayListOf<MutableList<Date>>()
     var daysLetter = arrayOf("Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu")
     var monthLetter = arrayOf("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember")
-    var weeksPerMonth = 5
-
-    var calendarArray =  emptyArray<String>()
 
     val even = emptyArray<String>()
     val odd = emptyArray<String>()
-
-    val lala = arrayOf(even, odd)
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)

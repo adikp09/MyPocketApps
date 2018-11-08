@@ -1,5 +1,6 @@
 package com.dev.adi.collectapps
 
+import android.util.Log
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -18,6 +19,7 @@ class Helpler {
                 var line = br.readLine()
                 sb.append(line)
                 stream = sb.toString()
+                Log.e("url", stream)
                 urlConnection.disconnect()
             }
         } catch (e: MalformedURLException) {
