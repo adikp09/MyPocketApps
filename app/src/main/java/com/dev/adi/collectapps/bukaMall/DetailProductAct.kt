@@ -8,6 +8,7 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Html
+import android.util.Log.e
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -33,7 +34,11 @@ class DetailProductAct : AppCompatActivity() {
         setContentView(R.layout.activity_detail_product_act)
         val extra = intent.extras
         val id = extra.getString("id")
-        GetListProduct().execute(apiProductRequest(id))
+        if (Helpler.isNetworkConnected(this)) {
+            GetListProduct().execute(apiProductRequest(id))
+        } else {
+            Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show()
+        }
 
         img_down.setOnClickListener {
             img_down.visibility = View.GONE

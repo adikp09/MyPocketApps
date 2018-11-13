@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dev.adi.collectapps">
-
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -15,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".bukaMall.BukaMallActivity">
+        <activity android:name=".sorting.SortingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,22 +24,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CalculatorActivity"
+            android:name=".singleapp.CalculatorActivity"
             android:label="@string/calculator" />
         <activity
-            android:name=".BmiActivity"
+            android:name=".singleapp.BmiActivity"
             android:label="@string/bmi" />
         <activity
             android:name=".TemperatureConversion"
             android:label="@string/temperature" />
         <activity
-            android:name=".CalculateAge"
+            android:name=".singleapp.CalculateAge"
             android:label="@string/age" />
         <activity
             android:name=".TicTacTok"
             android:label="@string/TicTacToe" />
         <activity
-            android:name=".Currency"
+            android:name=".singleapp.Currency"
             android:label="@string/title_activity_currency"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -48,36 +49,36 @@
             android:name=".AddTodo"
             android:label="@string/todo" />
         <activity
-            android:name=".NumericActivity"
+            android:name=".singleapp.NumericActivity"
             android:label="@string/numeric" />
         <activity
-            android:name=".CashierActivity"
+            android:name=".singleapp.CashierActivity"
             android:label="@string/cashier" />
         <activity
-            android:name=".WtfActivity"
+            android:name=".singleapp.WtfActivity"
             android:label="@string/wtf" />
         <activity android:name=".ScrabbleActivity" />
         <activity android:name=".ScrabbleDetail" />
         <activity android:name=".SnakeLedder" />
         <activity android:name=".Snake" />
-        <activity android:name=".AddSnake" />
-        <activity android:name=".Battleship" />
-        <activity android:name=".AddShip" />
+        <activity android:name=".snakeladder.AddSnake" />
+        <activity android:name=".battleship.Battleship" />
+        <activity android:name=".battleship.AddShip" />
         <activity android:name=".TodoMvc" />
-        <activity android:name=".WeatherApp" />
-        <activity android:name=".CalendarActivity" />
-        <activity android:name=".AntreActivity" />
+        <activity android:name=".weather.WeatherApp" />
+        <activity android:name=".singleapp.CalendarActivity" />
+        <activity android:name=".singleapp.AntreActivity" />
         <activity android:name=".MinesweeperActivity" />
-        <activity android:name=".MultiCalculator" />
+        <activity android:name=".singleapp.MultiCalculator" />
         <activity android:name=".MultiCalendarActivity" />
         <activity android:name=".MeetupActivity" />
         <activity android:name=".FsaActivity" />
-        <activity android:name=".PlatNomorActivity" />
-        <activity android:name=".ListProductActivity" />
-        <activity android:name=".DetailProductActivity" />
+        <activity android:name=".singleapp.PlatNomorActivity" />
+        <activity android:name=".productlist.ListProductActivity" />
+        <activity android:name=".productlist.DetailProductActivity" />
         <activity android:name=".bukaMall.DetailListProductAct" />
         <activity android:name=".bukaMall.DetailProductAct" />
-        <activity android:name=".ASCIIActivity" />
+        <activity android:name=".singleapp.ASCIIActivity" />
         <!-- <activity android:name=".HistogramActivity"></activity> -->
         <!-- <activity android:name=".GraphActivity"></activity> -->
         <!-- <activity android:name=".traversal.TraversalActivity" /> -->

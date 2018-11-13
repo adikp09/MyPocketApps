@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.dev.adi.collectapps.snakeladder.AddSnake
 import kotlinx.android.synthetic.main.activity_snake.*
 import java.util.*
 

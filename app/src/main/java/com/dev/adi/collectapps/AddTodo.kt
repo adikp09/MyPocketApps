@@ -6,6 +6,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Button
 import android.widget.EditText
+import com.dev.adi.collectapps.helpermodul.Storage
+import com.dev.adi.collectapps.task.Task
+import com.dev.adi.collectapps.task.TaskAdapter
 
 class AddTodo : AppCompatActivity() {
 

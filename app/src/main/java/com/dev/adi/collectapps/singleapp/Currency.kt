@@ -1,10 +1,11 @@
-package com.dev.adi.collectapps
+package com.dev.adi.collectapps.singleapp
 
 import android.app.ProgressDialog
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.dev.adi.collectapps.R
 import kotlinx.android.synthetic.main.activity_currency.*
 import org.json.JSONObject
 import java.net.URL

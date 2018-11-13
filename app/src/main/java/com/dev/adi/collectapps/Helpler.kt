@@ -1,5 +1,7 @@
 package com.dev.adi.collectapps
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.util.Log
 import java.io.BufferedReader
 import java.io.IOException
@@ -7,6 +9,8 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
+
+
 
 class Helpler {
 
@@ -33,5 +37,10 @@ class Helpler {
     companion object {
 
         internal var stream: String? = null
+
+        fun isNetworkConnected(context: Context): Boolean {
+            val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            return cm.activeNetworkInfo != null
+        }
     }
 }

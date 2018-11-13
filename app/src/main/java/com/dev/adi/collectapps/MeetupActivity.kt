@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.dev.adi.collectapps.event.Event
+import com.dev.adi.collectapps.event.EventAdapter
 import kotlinx.android.synthetic.main.activity_meetup.*
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone

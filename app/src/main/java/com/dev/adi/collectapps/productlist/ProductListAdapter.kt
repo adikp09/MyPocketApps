@@ -1,4 +1,4 @@
-package com.dev.adi.collectapps
+package com.dev.adi.collectapps.productlist
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import com.dev.adi.collectapps.R
 import com.dev.adi.collectapps.model.Products
 import kotlinx.android.synthetic.main.list_item_product.view.*
 import java.net.URL
@@ -16,7 +17,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
 class ProductListAdapter(val list: MutableList<Products>, private val onClick: onClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductListAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.list_item_product, parent, false)
         return ViewHolder(view)

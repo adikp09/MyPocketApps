@@ -4,7 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import com.dev.adi.collectapps.battleship.Battleship
 import com.dev.adi.collectapps.bukaMall.BukaMallActivity
+import com.dev.adi.collectapps.productlist.ListProductActivity
+import com.dev.adi.collectapps.singleapp.*
+import com.dev.adi.collectapps.weather.WeatherApp
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

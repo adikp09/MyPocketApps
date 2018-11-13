@@ -1,7 +1,8 @@
-package com.dev.adi.collectapps
+package com.dev.adi.collectapps.helpermodul
 
 import android.content.Context
 import android.util.Log
+import com.dev.adi.collectapps.task.Task
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.ObjectInputStream

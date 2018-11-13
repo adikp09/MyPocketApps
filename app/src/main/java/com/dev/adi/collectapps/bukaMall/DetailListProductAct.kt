@@ -10,12 +10,13 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log.e
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import com.dev.adi.collectapps.helpermodul.EndlessOnScrollListener
+import com.dev.adi.collectapps.Helpler
+import com.dev.adi.collectapps.R
 import com.dev.adi.collectapps.bukaMall.Adapter.DetailListProductAdapter
 import com.dev.adi.collectapps.bukaMall.Model.BukaMallProducts
 import com.dev.adi.collectapps.bukaMall.Model.BukaMallResponse
-import com.dev.adi.collectapps.EndlessOnScrollListener
-import com.dev.adi.collectapps.Helpler
-import com.dev.adi.collectapps.R
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_detail_list_product.*
 
@@ -33,11 +34,16 @@ class DetailListProductAct : AppCompatActivity(), DetailListProductAdapter.onCli
         val extras = intent.extras
         val keyword = extras!!.getString("keyword")
         title = keyword.toString()
-        GetDetailListProduct().execute(apiProductRequest(keyword.toString(), page))
+
+        if (Helpler.isNetworkConnected(this)) {
+            GetDetailListProduct().execute(apiProductRequest(keyword.toString(), page))
+        } else {
+            Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show()
+        }
 
         et_search.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-//                GetDetailListProduct().execute(apiProductRequest(keyword+" "+et_search.text, page))
+                GetDetailListProduct().execute(apiProductRequest(keyword+" "+et_search.text, page))
                 products.clear()
                 adapter.notifyDataSetChanged()
                 return@setOnEditorActionListener true

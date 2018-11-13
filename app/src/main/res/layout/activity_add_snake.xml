@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddSnake">
+    tools:context=".snakeladder.AddSnake">
 
     <EditText
         android:id="@+id/et_from"
