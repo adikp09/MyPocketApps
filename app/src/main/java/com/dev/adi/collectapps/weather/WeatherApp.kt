@@ -11,9 +11,10 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.dev.adi.collectapps.Helpler
-import com.dev.adi.collectapps.helpermodul.Network
 import com.dev.adi.collectapps.R
+import com.dev.adi.collectapps.helpermodul.Network
 import com.dev.adi.collectapps.model.ForcastResponse
 import com.dev.adi.collectapps.model.Lists
 import com.dev.adi.collectapps.model.WeatherResponse
@@ -71,15 +72,50 @@ class WeatherApp : AppCompatActivity() {
                 weatherResponse= gson.fromJson<WeatherResponse>(result, mType)
                 pd.dismiss()
 
-                textView14.text = weatherResponse.name + ", " + weatherResponse.sys.country
-                textView15.text = weatherResponse.weather[0].main + " (${weatherResponse.weather[0].description})"
-                textView16.text = weatherResponse.main.humidity.toString() + "%"
-                textView17.text = weatherResponse.main.temp.toString() + "C"
+                textView36.text = "${getDateTime(weatherResponse.dt.toString())}"
+                textView14.text = upperCaseFirst(weatherResponse.name + ", " + weatherResponse.sys.country)
+                textView33.text = upperCaseFirst(weatherResponse.weather[0].description)
+                textView17.text = "${Math.round(weatherResponse.main.temp)} \u2103"
+                textView37.text = "Sunrise ${getTime(weatherResponse.sys.sunrise.toString())}"
+                textView38.text = "Sunset ${getTime(weatherResponse.sys.sunset.toString())}"
 
-                icon = weatherResponse.weather[0].icon
-                DownLoadImageTask(imageView2).execute("http://api.openweathermap.org/img/w/$icon.png")
+                textView47.text = "${weatherResponse.wind.speed} m/s, ${weatherResponse.wind.deg}"
+                textView46.text = "${weatherResponse.clouds.all} %"
+                textView44.text = "${weatherResponse.main.pressure} hpa"
+                textView42.text = "${weatherResponse.main.humidity} %"
+                textView40.text = "${weatherResponse.rain.hour} mm"
+                Glide.with(this@WeatherApp)
+                        .load("http://api.openweathermap.org/img/w/${weatherResponse.weather[0].icon}.png")
+                        .into(imageView2)
+
             }
         }
+    }
+
+    private fun getDateTime(s: String): String? {
+        return try {
+            val sdf = SimpleDateFormat("HH:mm MMM dd")
+            val netDate = Date(s.toLong() * 1000)
+            sdf.format(netDate)
+        } catch (e: Exception) {
+            e.toString()
+        }
+    }
+
+    private fun getTime(s: String): String? {
+        return try {
+            val sdf = SimpleDateFormat("HH:mm")
+            val netDate = Date(s.toLong() * 1000)
+            sdf.format(netDate)
+        } catch (e: Exception) {
+            e.toString()
+        }
+    }
+
+    private fun upperCaseFirst(value : String): String {
+        val array = value.toCharArray()
+        array[0] = Character.toUpperCase(array[0])
+        return String(array)
     }
 
     inner class DownLoadImageTask(private val imageView: ImageView) : AsyncTask<String, Void, Bitmap?>() {
@@ -98,9 +134,9 @@ class WeatherApp : AppCompatActivity() {
                 // Display the downloaded image into image view
                 Toast.makeText(imageView.context,"Fetching success",Toast.LENGTH_SHORT).show()
                 imageView.setImageBitmap(result)
-                imageView.layoutParams.height = 100
-                imageView.layoutParams.width = 100
-                GetFotcast().execute(Network.apiForcastRequest())
+                imageView.layoutParams.height = resources.getDimension(R.dimen.icon).toInt()
+                imageView.layoutParams.width = resources.getDimension(R.dimen.icon).toInt()
+//                GetFotcast().execute(Network.apiForcastRequest())
             }else{
                 Toast.makeText(imageView.context,"Error Fetching",Toast.LENGTH_SHORT).show()
             }

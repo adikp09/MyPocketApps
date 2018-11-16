@@ -1,96 +1,103 @@
 package com.dev.adi.collectapps.sorting
 
-import android.annotation.SuppressLint
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.view.inputmethod.EditorInfo
+import android.support.v7.widget.SearchView
+import android.view.Menu
+import android.widget.Toast
 import com.dev.adi.collectapps.R
-import com.google.gson.Gson
+import com.dev.adi.collectapps.sorting.helper.EndlessOnScrollListener
+import com.dev.adi.collectapps.sorting.model.CommentModel
 import kotlinx.android.synthetic.main.activity_sorting.*
-import java.net.HttpURLConnection
-import java.net.URL
 
-class SortingActivity : AppCompatActivity() {
-    private val dataComment: ArrayList<CommentModel> = arrayListOf()
+
+class SortingActivity : AppCompatActivity(), MainView {
+
+    lateinit var presenter: SortingPresenter
     internal lateinit var adapter: CommentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sorting)
+        setSupportActionBar(mToolbar)
 
-        GetComment().execute("https://jsonplaceholder.typicode.com/comments")
+        presenter = SortingPresenter()
+        presenter.onAttach(this)
 
-        adapter = CommentAdapter(dataComment as MutableList<CommentModel>)
+        adapter = CommentAdapter(arrayListOf())
         rv_coment.layoutManager = LinearLayoutManager(this@SortingActivity)
         rv_coment.itemAnimator = DefaultItemAnimator()
         rv_coment.adapter = adapter
+        rv_coment.addOnScrollListener(scrollData())
 
-        button18.setOnClickListener {
-            val listItems = arrayOf("Name A-Z", "Name Z-A", "Email A-Z", "Email Z-A")
-            val mBuilder = android.support.v7.app.AlertDialog.Builder(this)
-            mBuilder.setTitle("Sort By")
-            mBuilder.setItems(listItems) { _, which ->
-                when (which) {
-                    0 -> {
-                        dataComment.sortWith(Comparator { t1, t2 ->
-                            t1.name.compareTo(t2.name)
-                        })
-                    }
-                    1 -> {
-                        dataComment.sortWith(Comparator { t1, t2 ->
-                            t2.name.compareTo(t1.name)
-                        })
-                    }
-                    2 -> {
-                        dataComment.sortWith(Comparator { t1, t2 ->
-                            t1.email.compareTo(t2.email)
-                        })
-                    }
-                    3 -> {
-                        dataComment.sortWith(Comparator { t1, t2 ->
-                            t2.email.compareTo(t1.email)
-                        })
-                    }
-                }
-                adapter.notifyDataSetChanged()
-            }
-            val mDialog = mBuilder.create()
-            mDialog.show()
-        }
+        BuilderDialog(this).createDialog(button18, presenter)
 
-        et_search.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                val equal = dataComment.filter { it.body.contains(et_search.text.toString().toLowerCase())}
-                dataComment.clear()
-                dataComment.addAll(equal)
-                adapter.notifyDataSetChanged()
-                return@setOnEditorActionListener true
+        presenter.requestData()
+
+//        et_search.setOnEditorActionListener { _, actionId, _ ->
+//            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+//                presenter.searchBody(et_search.text.toString().toLowerCase())
+//                return@setOnEditorActionListener true
+//            }
+//            return@setOnEditorActionListener false
+//        }
+    }
+
+    private fun scrollData(): EndlessOnScrollListener {
+        return object : EndlessOnScrollListener() {
+            override fun onLoadMore(page: Int) {
+                presenter.loadMore(page)
             }
-            return@setOnEditorActionListener false
         }
     }
 
-    @SuppressLint("StaticFieldLeak")
-    inner class GetComment : AsyncTask<String, String, String>() {
-        override fun doInBackground(vararg url: String?): String {
 
-            var text: String
-            var connection = URL(url[0]).openConnection() as HttpURLConnection
-            try {
-                connection.connect()
-                text = connection.inputStream.use { it.reader().use { reader -> reader.readText() } }
-            } finally { connection.disconnect() }
-            return text
-        }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            var respon = Gson().fromJson(result, Array<CommentModel>::class.java)
-            dataComment.addAll(respon)
-            adapter.notifyDataSetChanged()
-        }
+        menuInflater.inflate(R.menu.dashboard, menu)
+        val mSearch = menu.findItem(R.id.action_search)
+        val mSearchView = mSearch.actionView as SearchView
+        mSearchView.queryHint = "Search"
+        mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                presenter.searchBody(newText.toLowerCase())
+                return true
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun resetData(commentModel: MutableList<CommentModel>) {
+        adapter.clear()
+        adapter.updateAll(commentModel)
+    }
+
+    override fun successGetData() {
+        Toast.makeText(this, "success", Toast.LENGTH_SHORT)
+    }
+
+    override fun updateData(commentModel: MutableList<CommentModel>) {
+        adapter.updateAll(commentModel)
+    }
+
+    override fun error() {
+        Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onAttachView() {
+    }
+
+    override fun onDettachView() {
+        presenter.stopTask()
+    }
+
+    override fun dataNotFound() {
+        Toast.makeText(this, "Not Found", Toast.LENGTH_SHORT).show()
     }
 }
