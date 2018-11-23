@@ -58,7 +58,7 @@ class SortingPresenter : BasePresenter<MainView> {
     fun loadMore (page : Int) {
         if ((page * 10) + 10 <= tempDataComment.size) {
             modelView?.updateData(tempDataComment.subList(page * 10, (page * 10) + 10))
-        } else if (tempDataComment.size >= (page * 10)) {
+        } else if (tempDataComment.size > (page * 10)) {
             modelView?.updateData(tempDataComment.subList(page * 10, tempDataComment.size))
         }
     }

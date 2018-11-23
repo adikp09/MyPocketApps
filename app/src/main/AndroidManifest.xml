@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dev.adi.collectapps">
+
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,13 +12,14 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sorting.SortingActivity">
+        <activity android:name=".cardCompare.CardActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -81,9 +83,12 @@
         <activity android:name=".bukaMall.DetailProductAct" />
         <activity android:name=".singleapp.ASCIIActivity" />
 
-        <!--<meta-data-->
-            <!--android:name="preloaded_fonts"-->
-            <!--android:resource="@array/preloaded_fonts" />-->
+        <!-- <meta-data -->
+        <!-- android:name="preloaded_fonts" -->
+        <!-- android:resource="@array/preloaded_fonts" /> -->
+        <!-- <activity android:name=".flipCoin.CoinFlipActivity"></activity> -->
+        <!--<activity android:name=".TagsActivity" />-->
+        <!--<activity android:name=".cardCompare.CardActivity"></activity>-->
     </application>
 
 </manifest>

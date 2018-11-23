@@ -12,7 +12,7 @@ class PlatNomorActivity : AppCompatActivity() {
 //    Kabupaten Bantul (AB - kode belakang *B/*G/*J/*K/*T),
 //    Kabupaten Kulon Progo (AB - kode belakang *C/*L/*P/*V),
 //    Kabupaten Gunung Kidul (AB - kode belakang *D/*M/*W),
-//    Kabupaten Sleman (AB - kode belakang *E/*N/*Q/*U/*Y/*Z)
+//    Kabupaten Sleman (AB - kode wbelakang *E/*N/*Q/*U/*Y/*Z)
 //    Kota Yogyakarta (AB - kode belakang *A/*F/*H/*I/*S)
 
     private val regGunungKidul = "[a-zA-Z]{2}.[1-9]\\d{1,3}.[A-Z]{0,}[MDW]"
